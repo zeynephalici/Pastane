@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Sipariş Uygulaması</title>
+    <link href="Style/SiparisSayfasi.css" rel="stylesheet" />
+</head>
+<body style="background-color:#ffe6ff;">
+    <h1 style="text-align:center; color:#4d004d;">Mutfak Tarif Sipariş Ekranı </h1>
+    <br />
+    <form style="text-align:center;" id="form1">
+        <div style="width: 500px; margin-top: 5%; margin-left: auto; margin-right: auto; border: 2px solid #4d004d; padding: 30px;">
+            <label for="txtMusteriAdi">Müşteri Adı:</label><br /><br />
+            <input id="txtMusteriAdi" type="text" name="txtMusteriAdi" /><br /><br />
+            <label for="txtSiparis">Sipariş Adedi:</label><br /><br />
+            <input id="txtSiparis" type="text" name="txtSiparis" /><br /><br />
+            <input onclick="siparisVer()" type="button" id="btnGiris" value="Sipariş Ver" />
+        </div>
+    </form>
+
+    <div style="text-align:center; width: 500px; margin-top: 5%; margin-left: auto; margin-right: auto; border: 2px solid #4d004d; padding: 30px;" id="siparisDokumu">
+
+        <h3>Müşteri Adı</h3>
+        <p id="musteriAdi">musteriAdi</p>
+        <h3>Sipariş Adedi</h3>
+        <p id="siparisAdedi">musteriAdi</p>
+        <h3>Gereken Pasta Keki (KG)</h3>
+        <p id="pastaKeki">musteriAdi</p>
+        <h3>Gereken Pasta Kremasi (KG)</h3>
+        <p id="pastaKremasi">musteriAdi</p>
+        <h3>Gereken Çilek (KG)</h3>
+        <p id="cilek">musteriAdi</p>
+        <h3>Gereken Kivi (KG)</h3>
+        <p id="kivi">musteriAdi</p>
+        <h3>Gereken Draje (KG)</h3>
+        <p id="draje">musteriAdi</p>
+        <h3>Gereken Jöle (KG)</h3>
+        <p id="jole">musteriAdi</p>
+
+    </div>
+
+    <script>
+        document.getElementById("siparisDokumu").style.display = "none";
+        function siparisVer() {
+            document.getElementById("siparisDokumu").style.display = "block";
+            var _form1 = document.getElementById("form1");
+            var bilgiler = {
+                musteriAdi: _form1["txtMusteriAdi"].value,
+                siparisAdedi: _form1["txtSiparis"].value,
+                islemYap: function (yuzde) {
+                    var hesapla = this.siparisAdedi * yuzde * 0.8 * 1.1;
+                    return (hesapla);
+                }
+            }
+            document.getElementById("musteriAdi").innerHTML = bilgiler.musteriAdi;
+            document.getElementById("siparisAdedi").innerHTML = bilgiler.siparisAdedi;
+            document.getElementById("pastaKeki").innerHTML = bilgiler.islemYap(0.3);
+            document.getElementById("pastaKremasi").innerHTML = bilgiler.islemYap(0.4);
+            document.getElementById("cilek").innerHTML = bilgiler.islemYap(0.05);
+            document.getElementById("kivi").innerHTML = bilgiler.islemYap(0.05);
+            document.getElementById("draje").innerHTML = bilgiler.islemYap(0.1);
+            document.getElementById("jole").innerHTML = bilgiler.islemYap(0.1);
+        };
+
+            //function islemYap(miktar, yuzde) {
+            //    var hesapla = miktar * yuzde * 0.8 * 1.1;
+            //    return Math.round(hesapla);
+            //};
+    </script>
+
+</body>
+</html>
